@@ -1,0 +1,9 @@
+[package]
+name = "learn_reqwest"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+reqwest = { version = "0.11.3", features = ["json", "blocking"] }
+error-chain = "0.12.4"
+tokio = { version = "1.0", features = ["full"] }
