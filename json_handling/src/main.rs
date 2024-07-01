@@ -13,6 +13,7 @@ struct Article {
 }
 
 fn main() {
+    // reading json
     let json = r#"
     {
         "article": "JSON in rust!",
@@ -33,6 +34,26 @@ fn main() {
 
     let parsed: Article = read_json_typed(json);
     println!("\n\nThe name of the first paragraph is: {}", parsed.paragraph[0].name);
+
+    // writing json
+    let article = Article {
+        article: String::from("Writing Json in Rust!"),
+        author: String::from("Nihal T M"),
+        paragraph: vec![
+            Paragraph {
+                name: String::from("First paragraph!")
+            },
+            Paragraph {
+                name: String::from("This is the main part yo!")
+            },
+            Paragraph {
+                name: String::from("Conclusion paragraph")
+            }
+        ]
+    };
+
+    let json = serde_json::to_string(&article).unwrap();
+    println!("JSON obj constructed: {}", json);
 }
 
 fn read_json_typed(raw_json: &str) -> Article {
